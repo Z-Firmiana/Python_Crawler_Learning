@@ -1,9 +1,9 @@
 import urllib.request
 # 定义一个url，即为我们要访问的地址
-url = "http://www.baidu.com"
+# url = "http://www.baidu.com"
 
 # 模拟浏览器向服务器发送请求，response响应
-response = urllib.request.urlopen(url)
+# response = urllib.request.urlopen(url)
 
 # 获取响应中的源码
 # read方法，返回的是字节形式的二进制数据
@@ -53,3 +53,54 @@ response = urllib.request.urlopen(url)
 # 下载视频
 # url_video = "https://kvideo01.youju.sohu.com/a2f4319b-771d-4267-aa21-bdf4c4b826c72_0_0.mp4?sign=933baf65f935665bc2f5f64f7365356e&t=1685400322"
 # urllib.request.urlretrieve(url_video, "video.mp4")
+
+'''UA反爬，请求对象'''
+# import urllib.request
+#
+# url = 'https://www.baidu.com'
+# headers = {
+#     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.9'
+# }
+#
+# request = urllib.request.Request(url, headers=headers)
+# response = urllib.request.urlopen(request)
+# content = response.read().decode('utf8')
+#
+# print(content)
+
+'''get请求的quote方法'''
+# import urllib.request
+# import urllib.parse
+# name = urllib.parse.quote('周杰伦') # 将中文转化为Unicode编码
+# url = 'https://www.baidu.com/s?wd='
+# url = url + name
+# headers = {
+#     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.9'
+# }
+#
+# request = urllib.request.Request(url, headers=headers)
+# response = urllib.request.urlopen(request)
+# content = response.read().decode('utf8')
+# print(content)
+
+'''get请求的urlencode方法'''
+# 有多个参数需要转化为Unicode编码
+# https://www.baidu.com/s?wd=周杰伦&sex=男&location=中国台湾
+import urllib.parse
+
+data = {
+    'wd': '周杰伦',
+    'sex': '男',
+    'location': '中国台湾'
+}
+a = urllib.parse.urlencode(data)
+url = 'https://www.baidu.com/s?'
+url = url + a
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.9'
+}
+
+request = urllib.request.Request(url, headers=headers)
+response = urllib.request.urlopen(request)
+content = response.read().decode('utf-8')
+print(content)
